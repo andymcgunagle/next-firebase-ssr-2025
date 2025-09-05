@@ -1,0 +1,49 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // FUNCTIONS //
+    function isPublic() {
+      return true;
+    }
+
+    function isNotAllowed() {
+      return false;
+    }
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function currentUserUid() {
+      return request.auth.uid;
+    }
+
+    function isCurrentUserOwnedDoc(uid) {
+      return isAuthenticated() && currentUserUid() == uid;
+    }
+
+    function isNotAffectingKeys(keys) {
+      return !request.resource.data
+        .diff(resource.data)
+        .affectedKeys()
+        .hasAny(keys);
+    }
+
+    // Small safeguard against overwriting entire documents.
+    function isNotAffectingCreatedAt() {
+      return isNotAffectingKeys(["createdAt"]);
+    }
+    
+    match /accounts/{uid} { // Private user data.
+      allow read: if isCurrentUserOwnedDoc(uid);
+      allow write: if isNotAllowed(); // Restricted to Admin SDK.
+    }
+
+    match /profiles/{uid} {
+      allow create, delete: if isNotAllowed(); // Restricted to Admin SDK.
+      allow read: if isPublic();
+  		allow update: if isCurrentUserOwnedDoc(uid) && isNotAffectingCreatedAt();
+  	}
+  }
+}

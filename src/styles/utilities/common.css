@@ -1,0 +1,28 @@
+@utility debug {
+  border: 1px solid red !important;
+}
+
+@utility border-default {
+  @apply border-[var(--border-default)];
+}
+
+@utility hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility h-bar {
+  height: var(--h-bar);
+}
+
+@utility h-screen-dynamic {
+  height: 100dvh;
+}
+
+@utility z-max {
+  z-index: 2147483647;
+}

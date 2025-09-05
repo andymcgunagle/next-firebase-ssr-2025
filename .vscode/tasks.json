@@ -1,0 +1,40 @@
+// https://code.visualstudio.com/docs/editor/tasks
+// https://code.visualstudio.com/docs/reference/tasks-appendix
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "web-app:all",
+      "dependsOn": ["web-app:ts:watch", "web-app:dev"],
+      "dependsOrder": "parallel",
+      "group": "build",
+      "problemMatcher": [],
+      // These tasks will run automatically when the workspace is opened. To disable this, comment out the following line. You can also run them manually from the Command Palette (command+shift+P) with "Tasks: Run Task" -> "web-app:all" or kill them with "Tasks: Terminate Task" -> "All Running Tasks"
+      "runOptions": { "runOn": "folderOpen" }
+    },
+    {
+      "label": "web-app:ts:watch",
+      "command": "npm run ts:watch",
+      "isBackground": true,
+      "options": { "cwd": "${workspaceFolder}" },
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "group": "web-app-terminal-group",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "web-app:dev",
+      "command": "npm run dev",
+      "isBackground": true,
+      "options": { "cwd": "${workspaceFolder}" },
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "group": "web-app-terminal-group",
+        "panel": "shared"
+      }
+    }
+  ]
+}

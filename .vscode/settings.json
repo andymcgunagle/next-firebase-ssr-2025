@@ -1,0 +1,70 @@
+{
+  /** FILES & SEARCH EXCLUSIONS */
+  /** Files and folders to show/hide in File Explorer. This keeps your workspace tidy and focused on relevant files. */
+  "files.exclude": {
+    "**/**.config.**": true,
+    "**/.hg": false,
+    "**/.log": false,
+    "**/.svn": false,
+    "**/CVS": false,
+    "**/Thumbs.db": false,
+    "**/node_modules": true,
+    "**/package-lock.json": true,
+    "**/package.json": true,
+    "**/tsconfig.**": true,
+    ".gitignore": true,
+    ".next": true,
+    ".prettier**": true,
+    ".vercel**": true,
+    "next-env.d.ts": true,
+    "tsconfig.tsbuildinfo": true,
+    "vercel.json": true
+  },
+  /** Files and folders to include/exclude in fulltext searches and file search in quick open. Patterns that are specified under files.exclude are automatically excluded from search, so setting values to false here ensures they remain searchable (e.g. with ⌘+P). */
+  "search.exclude": {
+    "**/**.config.**": false,
+    "**/README.md": false,
+    "**/package.json": false,
+    "**/tsconfig.**": false,
+    ".env*": false,
+    ".gitignore": false,
+    ".prettier**": false,
+    ".vercel**": false,
+    ".vercelignore": false,
+    "firebase.json": false,
+    "vercel.json": false
+  },
+
+  /** FORMATTING */
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports.ts": "always",
+    "source.fixAll.eslint": "always",
+    "source.removeUnusedImports": "always",
+
+    /** There are other ways to do this, but this is the simplest option using the default formatter. */
+    "source.sortImports": "always"
+  },
+
+  /** TAILWIND */
+  "tailwindCSS.classAttributes": [
+    /** The default attributes Tailwind IntelliSense looks for. */
+    "class",
+    "className",
+
+    /** Custom regex patterns to enable Tailwind IntelliSense in any property/variable whose name contains these strings. */
+    "classNames",
+    ".*ClassNames.*",
+    ".*ClassName.*"
+  ],
+  /** Use the files.associations setting to tell VS Code to always open .css files in Tailwind CSS mode. */
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  /** By default VS Code will not trigger completions when editing "string" content, for example within JSX attribute values. Updating the editor.quickSuggestions setting may improve your experience. */
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
+}
