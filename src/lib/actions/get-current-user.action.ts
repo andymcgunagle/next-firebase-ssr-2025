@@ -1,8 +1,8 @@
 import "server-only";
 
+import { SessionCookieAuth } from "@/lib/security/session-cookie-auth";
 import type { DecodedIdToken } from "firebase-admin/auth";
 import { z } from "zod/v4";
-import { SessionCookieAuth } from "../security/session-cookie-auth";
 
 /** @todo Add custom claims you care about. */
 export type CurrentUserDTO = Pick<

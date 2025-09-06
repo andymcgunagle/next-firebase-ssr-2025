@@ -1,7 +1,7 @@
 import "server-only";
 
-import { firebaseAdminFirestoreDb } from "../firebase/server-app";
-import type { AccountDoc } from "../schemas/firebase/documents/users/account-doc.schema";
+import { firebaseAdminFirestoreDb } from "@/lib/firebase/server-app";
+import type { AccountDoc } from "@/lib/schemas/firebase/documents/users/account-doc.schema";
 import { getCurrentUser } from "./get-current-user.action";
 
 export async function getCurrentUserAccountDoc(): Promise<{

@@ -14,7 +14,7 @@ export const config = {
 };
 
 async function routingMiddleware(req: NextRequest) {
-  const isAuthenticated = await SessionCookieAuth.verify();
+  const { isAuthenticated } = await SessionCookieAuth.checkIsAuthenticated();
 
   const path = req.nextUrl.pathname;
 
